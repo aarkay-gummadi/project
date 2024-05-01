@@ -34,13 +34,12 @@ pipeline{
             steps {
                 script {
                     //  Pushing Image to Repository
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER1', passwordVariable: 'PASS1')]) {
-                    sh 'docker login -u "$USER1" -p "$PASS1"'
-                    }
+                    sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                    
                     sh 'docker push $DOCKER_HUB_REPO:$BUILD_NUMBER'
                     sh 'docker push $DOCKER_HUB_REPO:latest'
                 
-                    echo "Image has been updated on dockerhub"
+                        echo "Image has been updated on dockerhub"
                 }
             }
         }
