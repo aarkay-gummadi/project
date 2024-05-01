@@ -22,7 +22,7 @@ pipeline{
                 script {
                     dir('./docker') {
                         //  Building new image
-                        sh 'docker image build -t flask:latest .'
+                        sh 'docker image build -t rajkumar207/flask:latest .'
                         echo "Image successfully built"
                     }
                 }
@@ -35,10 +35,9 @@ pipeline{
                     //  Pushing Image to Repository
                     sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
                     
-                    sh 'docker push $DOCKER_HUB_REPO:$BUILD_NUMBER'
-                    sh 'docker push $DOCKER_HUB_REPO:latest'
+                    sh 'docker push rajkumar207/flask:latest'
                 
-                        echo "Image has been updated on dockerhub"
+                    echo "Image has been updated on dockerhub"
                 }
             }
         }
