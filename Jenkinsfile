@@ -94,6 +94,7 @@ pipeline{
                 script{
                     
                     sh 'kubectl get all'
+                    sh 'minikube service flaskapp'
                     
                 }
             }
