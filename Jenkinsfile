@@ -3,7 +3,6 @@ pipeline{
     agent any
     environment {
        DOCKERHUB_CREDENTIALS = credentials('Docker_cred')
-       DEFAULT_REGION = 'East US'
     }
 
     stages {
